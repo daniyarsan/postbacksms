@@ -11,4 +11,13 @@ export type PageProps<
     auth: {
         user: User;
     };
+    errors: Errors & ErrorBag;
+    success: string;
+
 };
+
+
+export type Option = {
+    label: string
+    value: string
+}
