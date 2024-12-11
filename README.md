@@ -10,7 +10,7 @@ Follow these steps to set up and run the project locally:
 - Run the following command to start the project:
 
 ```bash
-make start
+make install
 ```
 
 ## 3. Access the Application

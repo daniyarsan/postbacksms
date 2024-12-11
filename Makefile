@@ -8,12 +8,21 @@ APP_CONTAINER=app
 VITE_CONTAINER=vite
 
 
+
+######### INSTALL (only once)
+install: start setup
+
 ######### COMMANDS
+
 start: build up vite_install vite_build
 restart: stop up
 rebuild: stop clear start
 
 #=============== STEPS ========================
+
+setup:
+	cd $(APP_DIR) && $(DC) exec -T $(APP_CONTAINER) php artisan migrate --force && \
+	$(DC) exec -T $(APP_CONTAINER) php artisan db:seed
 
 build:
 	cd $(APP_DIR) && $(DC) build
@@ -40,7 +49,8 @@ vite_build:
 vite_dev:
 	cd $(APP_DIR) && $(DC) exec -T $(VITE_CONTAINER) npm run build
 
-
+artisan:
+	cd $(APP_DIR) && $(DC) exec -T $(APP_CONTAINER) php artisan $(cmd)
 
 clear:
 	$(DC) down -v --remove-orphans
