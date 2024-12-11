@@ -35,6 +35,7 @@ class HandleInertiaRequests extends Middleware
             return Session::get('errors') ? Session::get('errors')->getBag('default')->getMessages() : (object) [];
         }]);
         Inertia::share([ 'success' => function () { return Session::get('success') ? Session::get('success'): ''; }]);
+        Inertia::share([ 'data' => function () { return Session::get('data') ? Session::get('data'): ''; }]);
 
         return [
             ...parent::share($request),

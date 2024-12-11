@@ -64,7 +64,7 @@ export default function GetStatusForm() {
                         return (
                             <FormItem>
                                 <FormLabel className='text-xs leading-6 text-gray-400 flex flex-row items-center gap-3'>
-                                    Rent time
+                                    Activation number
                                 </FormLabel>
                                 <FormControl>
                                     <Input

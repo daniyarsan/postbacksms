@@ -13,9 +13,13 @@ export type PageProps<
     };
     errors: Errors & ErrorBag;
     success: string;
-
 };
 
+
+type GetNumberPageProps = PageProps<{ data: { number: string | number, activation: string | number } }>
+type CancelNumberPageProps = PageProps<{ data: { number: string | number, activation: string | number } }>
+type GetSmsPageProps = PageProps<{ data: { number: string | number, activation: string | number } }>
+type GetStatusPageProps = PageProps<{ data: { number: string | number, activation: string | number } }>
 
 export type Option = {
     label: string

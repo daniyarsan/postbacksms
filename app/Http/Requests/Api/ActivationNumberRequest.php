@@ -22,7 +22,7 @@ class ActivationNumberRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'activation'     => 'required|number',
+            'activation' => 'required|integer',
         ];
     }
 }

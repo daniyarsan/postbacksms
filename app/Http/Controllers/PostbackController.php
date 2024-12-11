@@ -16,34 +16,55 @@ class PostbackController extends Controller
     {
         $response = $apiService->get('', [...$request->validated(), 'action' => 'getNumber']);
 
-        return redirect()->back()->withErrors('asdfasfasdfasdf');
-        return response()->json($response);
+//        $response = [
+//            "code" => "ok",
+//            "number" => "18181817177",
+//            "activation" => "10869836",
+//            "end_date" => "2022-09-01 18:16:00", //если передавался параметр rent_time
+//            "cost" => 0.01
+//        ];
+
+        if (isset($response['code']) && $response['code'] === 'error') {
+            return redirect()->back()->withErrors($response['message'] ?? 'An error occurred');
+        }
+
+        return back()->with('success', 'Operation completed successfully!')
+            ->with('data', $response);
     }
 
     public function getSms(ActivationNumberRequest $request, PostbackApiService $apiService)
     {
-        $response = $apiService->get('', $request->validated());
+        $response = $apiService->get('', [...$request->validated(), 'action' => 'getSms']);
 
-        return response()->json($response);
+        if (isset($response['code']) && $response['code'] === 'error') {
+            return redirect()->back()->withErrors($response['message'] ?? 'An error occurred');
+        }
+
+        return back()->with('success', 'Operation completed successfully!')
+            ->with('data', $response);
     }
 
     public function cancelNumber(ActivationNumberRequest $request, PostbackApiService $apiService)
     {
-        dd($request->validated());
+        $response = $apiService->get('', [...$request->validated(), 'action' => 'cancelNumber']);
 
-        $request->validated();
-        $response = $apiService->get('', ['userId' => 1]);
+        if (isset($response['code']) && $response['code'] === 'error') {
+            return redirect()->back()->withErrors($response['message'] ?? 'An error occurred');
+        }
 
-        return response()->json($response);
+        return back()->with('success', 'Operation completed successfully!')
+            ->with('data', $response);
     }
 
     public function getStatus(ActivationNumberRequest $request, PostbackApiService $apiService)
     {
-        dd($request->validated());
+        $response = $apiService->get('', [...$request->validated(), 'action' => 'getStatus']);
 
-        $request->validated();
-        $response = $apiService->get('', ['userId' => 1]);
+        if (isset($response['code']) && $response['code'] === 'error') {
+            return redirect()->back()->withErrors($response['message'] ?? 'An error occurred');
+        }
 
-        return response()->json($response);
+        return back()->with('success', 'Operation completed successfully!')
+            ->with('data', $response);
     }
 }
